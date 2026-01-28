@@ -162,13 +162,19 @@ function triggerAR(btn) {
     if (viewer) {
         logger.log(`Viewer found for: ${card.querySelector('.food-name').textContent}`);
 
+        // Listen for AR Status Changes
+        viewer.addEventListener('ar-status', (event) => {
+            logger.log(`AR Status Change: ${event.detail.status}`);
+        });
+
         if (viewer.canActivateAR) {
             logger.log("System reports: AR is supported.");
-            logger.log("Attempting to activate AR...");
+            logger.log("Attempting to activate AR (Scene Viewer Priority)...");
 
             try {
                 viewer.activateAR().then(() => {
                     logger.log("AR Activation Promise Resolved");
+                    logger.log("Waiting for external AR app...");
                 }).catch((e) => {
                     logger.log(`AR Activation Error: ${e.message}`);
                     alert(`AR Error: ${e.message}`);
