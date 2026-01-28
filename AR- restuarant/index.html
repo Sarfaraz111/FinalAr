@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Food Feast AR</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <meta name="theme-color" content="#FF6B00">
+</head>
+
+<body>
+
+    <!-- Splash Screen -->
+    <div id="splash-overlay">
+        <div class="splash-logo">🍔</div>
+        <h1 class="splash-title">Food Feast</h1>
+        <p>Your One-Stop App For Delicious Meals in AR</p>
+        <button class="splash-btn" onclick="enterApp()">Get Started</button>
+    </div>
+
+    <!-- Main App Content (Hidden initially) -->
+    <main class="app-container" id="app-content" style="display: none; opacity: 0;">
+
+        <!-- Header -->
+        <header class="app-header">
+            <button class="icon-btn">☰</button>
+            <div class="header-title">Fast Foods</div>
+            <button class="icon-btn">❤️</button>
+        </header>
+
+        <!-- Search -->
+        <div class="search-container">
+            <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" id="searchInput" placeholder="Search for food...">
+            </div>
+        </div>
+
+        <!-- Deals Slider -->
+        <section class="slider-container">
+            <div class="slider-wrapper">
+                <!-- Slide 1 -->
+                <div class="slide" style="background: linear-gradient(135deg, #FF9966, #FF5E62);">
+                    <div class="slide-content">
+                        <h2>MEGA DEAL</h2>
+                        <p>50% OFF ON ZINGER</p>
+                        <button>Order Now</button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide" style="background: linear-gradient(135deg, #EF629F, #EECDA3);">
+                    <div class="slide-content">
+                        <h2>FAMILY FEAST</h2>
+                        <p>PIZZA + DRINKS</p>
+                        <button>View Deal</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="category-section">
+            <div class="category-list">
+                <div class="category-chip active">🔥 All</div>
+                <div class="category-chip">� Fast Food</div>
+                <div class="category-chip">🥘 Desi & BBQ</div>
+                <div class="category-chip">🍕 Pizza</div>
+            </div>
+        </section>
+
+        <!-- Item List -->
+        <section class="food-list">
+
+            <!-- Item: Biryani -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/biryani.glb" poster="assets/biryani.png" alt="Special Biryani"
+                        shadow-intensity="1" auto-rotate camera-controls touch-action="pan-y" ar
+                        ar-modes="webxr scene-viewer quick-look" loading="eager">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Special Chicken Biryani</h3>
+                        <span class="food-price">Rs. 450</span>
+                    </div>
+                    <p class="food-desc">Aromatic basmati rice cooked with traditional spices and tender chicken.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Item: Pizza -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/pizza.glb"
+                        poster="assets/pngtree-authentic-italian-pizza-with-cheese-and-fresh-vegetable-toppings-png-image_14714611.png"
+                        alt="Pizza" shadow-intensity="1" auto-rotate camera-controls touch-action="pan-y" ar
+                        ar-modes="webxr scene-viewer quick-look" loading="lazy">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Italian Cheese Pizza</h3>
+                        <span class="food-price">Rs. 1200</span>
+                    </div>
+                    <p class="food-desc">Authentic Italian crust loaded with cheese and fresh vegetables.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Item: Chicken Chirgah -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/chicken chirgah.glb" poster="assets/chirgah.png" alt="Chicken Chirgah"
+                        shadow-intensity="1" auto-rotate camera-controls touch-action="pan-y" ar
+                        ar-modes="webxr scene-viewer quick-look" loading="lazy">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Full Chicken Chirgah</h3>
+                        <span class="food-price">Rs. 1500</span>
+                    </div>
+                    <p class="food-desc">Deep-fried whole chicken marinated in special Lahori spices.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Item: Handi Karhai -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/handi karhai.glb" poster="assets/handi.avif" alt="Handi Karhai"
+                        shadow-intensity="1" auto-rotate camera-controls touch-action="pan-y" ar
+                        ar-modes="webxr scene-viewer quick-look" loading="lazy">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Chicken Handi</h3>
+                        <span class="food-price">Rs. 950</span>
+                    </div>
+                    <p class="food-desc">Creamy and spicy boneless chicken cooked in a clay pot.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Item: Drumstick -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/drumstick.glb" poster="assets/drumstcik.png" alt="Drumsticks"
+                        shadow-intensity="1" auto-rotate camera-controls touch-action="pan-y" ar
+                        ar-modes="webxr scene-viewer quick-look" loading="lazy">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Fried Drumsticks (5 pcs)</h3>
+                        <span class="food-price">Rs. 600</span>
+                    </div>
+                    <p class="food-desc">Crispy fried chicken drumsticks served with sauce.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Item: Zinger Burger -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/burger.glb" poster="assets/big deel.png" alt="Zinger Burger"
+                        shadow-intensity="1" auto-rotate camera-controls touch-action="pan-y" ar
+                        ar-modes="webxr scene-viewer quick-look" loading="lazy">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Zinger Burger Deal</h3>
+                        <span class="food-price">Rs. 650</span>
+                    </div>
+                    <p class="food-desc">Crispy burger with cheese, fries and drink.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- Item: Roll -->
+            <article class="food-card">
+                <div class="ar-badge">AR READY</div>
+                <div class="card-image-container">
+                    <model-viewer src="models/roll.glb" poster="assets/r.png" alt="Paratha Roll" shadow-intensity="1"
+                        auto-rotate camera-controls touch-action="pan-y" ar ar-modes="webxr scene-viewer quick-look"
+                        loading="lazy">
+                    </model-viewer>
+                </div>
+                <div class="card-details">
+                    <div class="card-row">
+                        <h3 class="food-name">Zinger Paratha Roll</h3>
+                        <span class="food-price">Rs. 350</span>
+                    </div>
+                    <p class="food-desc">Crispy chicken wrapped in fresh paratha with chutney.</p>
+                    <button class="btn-ar" onclick="triggerAR(this)">
+                        <span>🧊 View in 3D</span>
+                    </button>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon">❤️</span>
+            <span>Saved</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon">🛒</span>
+            <span>Cart</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Profile</span>
+        </button>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

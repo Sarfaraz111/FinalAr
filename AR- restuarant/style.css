@@ -1,0 +1,427 @@
+/* Food Feast App Theme */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-orange: #FF6B00;
+    /* Vibrant Orange from ref */
+    --primary-red: #FF4B4B;
+    /* For buttons/alerts */
+    --bg-body: #F9F9F9;
+    --bg-white: #FFFFFF;
+    --text-dark: #1A1A1A;
+    --text-grey: #888888;
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --radius-l: 30px;
+    --radius-m: 20px;
+    --radius-s: 12px;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    /* Space for bottom nav */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Splash Screen Style (Applied to body when active) */
+body.splash-active {
+    background-color: var(--primary-orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    padding-bottom: 0;
+}
+
+/* Container */
+.app-container {
+    max-width: 480px;
+    /* Mobile width constraint */
+    margin: 0 auto;
+    background: var(--bg-body);
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.app-header {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-white);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Search Bar */
+.search-container {
+    padding: 0 24px 20px;
+    background: var(--bg-white);
+}
+
+.search-bar {
+    background: #F2F2F2;
+    border-radius: 15px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-grey);
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Slider Section */
+.slider-container {
+    padding: 0 24px 10px;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    scrollbar-width: none;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    min-width: 100%;
+    height: 160px;
+    border-radius: 20px;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.slide-content h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slide-content p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.slide-content button {
+    background: white;
+    color: var(--primary-orange);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Categories (Horizontal Scroll) */
+.category-section {
+    padding: 20px 0 10px;
+}
+
+.section-header {
+    padding: 0 24px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.view-all {
+    color: var(--primary-red);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.category-list {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 0 24px 20px;
+    scrollbar-width: none;
+    /* Hide scrollbar */
+}
+
+.category-list::-webkit-scrollbar {
+    display: none;
+}
+
+.category-chip {
+    background: var(--bg-white);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-chip.active {
+    background: var(--primary-orange);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+}
+
+/* Food Cards (Vertical) */
+.food-list {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.food-card {
+    background: var(--bg-white);
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.food-card:active {
+    transform: scale(0.98);
+}
+
+.card-image-container {
+    height: 180px;
+    background: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3D Model specific overrides for Card */
+.food-card model-viewer {
+    width: 100%;
+    height: 100%;
+    --poster-color: transparent;
+    background-color: #f5f5f5;
+    /* Light grey bg for models */
+}
+
+.card-details {
+    padding: 16px;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.food-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.food-price {
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.food-desc {
+    color: var(--text-grey);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.btn-ar {
+    width: 100%;
+    background: var(--primary-red);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.ar-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-orange);
+    z-index: 2;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-white);
+    padding: 12px 24px 20px;
+    /* Extra padding for bottom safe area */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #ccc;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.nav-item.active {
+    color: var(--primary-orange);
+}
+
+.nav-icon {
+    font-size: 1.4rem;
+}
+
+/* Splash Screen Overlay */
+#splash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-orange);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.splash-logo {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-size: 3rem;
+}
+
+.splash-title {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    /* Keep serif for logo */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.splash-btn {
+    margin-top: 40px;
+    background: var(--primary-red);
+    color: white;
+    border: none;
+    padding: 18px 60px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.splash-btn:active {
+    transform: scale(0.95);
+}
+
+/* Hide scrollbar mainly */
+body::-webkit-scrollbar {
+    display: none;
+}
